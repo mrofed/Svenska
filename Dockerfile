@@ -1,11 +1,20 @@
-# Use the official Python image as the base image
+# Use an official Python runtime as a parent image
 FROM python:3
 
-# Set the working directory inside the container
+# Set the working directory to /app
 WORKDIR /app
 
-# Copy the local Python script into the container
-COPY app.py /app/app.py
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-# Run the Python script when the container starts
-CMD ["python", "app.py"]
+# Install any needed packages specified in requirements.txt
+RUN pip install -r requirements.txt
+
+# Make port 5000 available to the world outside this container
+EXPOSE 5000
+
+# Define environment variable
+ENV NAME World
+
+# Run your Flask app (replace "your_flask_app.py" with your actual Python file)
+CMD ["python", "your_flask_app.py"]

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Swedish Learning Game - Level {{ level }}</title>
+</head>
+<body>
+  <h1>Level {{ level }}</h1>
+  <img src="{{ url_for('static', filename=image) }}" alt="Object to Learn">
+  <form method="POST">
+    <ul>
+      {% for word in [correct_word] + incorrect_words %}
+        <li>
+          <label>
+            <input type="radio" name="word" value="{{ word }}">{{ word }}
+          </label>
+        </li>
+      {% endfor %}
+    </ul>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
